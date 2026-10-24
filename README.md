@@ -17,4 +17,4 @@ An interactive, comprehensive study portal for **Software Testing and Quality As
 
 ## 🚀 Live Demo
 
-- Hosted on Vercel
+- **Live URL**: [https://stqa-study-guide.vercel.app](https://stqa-study-guide.vercel.app)
