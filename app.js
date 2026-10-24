@@ -78,12 +78,27 @@ function initNavigation() {
 
   const themeBtn = document.getElementById('theme-toggle-btn');
   const themeIcon = document.getElementById('theme-icon');
+  
+  // Restore saved theme preference if present
+  try {
+    const savedTheme = localStorage.getItem('stqa-theme');
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      if (themeIcon) themeIcon.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
+    }
+  } catch (e) {
+    // localStorage may be disabled
+  }
+
   if (themeBtn) {
     themeBtn.addEventListener('click', () => {
       const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
       const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', nextTheme);
-      themeIcon.textContent = nextTheme === 'dark' ? '🌙' : '☀️';
+      if (themeIcon) themeIcon.textContent = nextTheme === 'dark' ? '🌙' : '☀️';
+      try {
+        localStorage.setItem('stqa-theme', nextTheme);
+      } catch (e) {}
       playAppleClick(600);
     });
   }
