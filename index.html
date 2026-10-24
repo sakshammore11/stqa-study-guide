@@ -1,0 +1,1603 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STQA • Learn software testing, one idea at a time</title>
+  <meta name="description"
+    content="A calm, practical guide to software testing with short lessons, worked examples, practice questions, and interactive labs.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <!-- Ambient Apple Glow Background -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+
+  <!-- Apple Navigation Bar -->
+  <header class="apple-nav-wrapper">
+    <nav class="apple-nav">
+      <div class="nav-brand">
+        <div class="apple-logo-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">STQA<span class="brand-accent">Pro</span></span>
+          <span class="brand-subtitle">A practical study guide</span>
+        </div>
+      </div>
+
+      <!-- Segmented Navigation Pill -->
+      <div class="segmented-control" id="main-nav-pill">
+        <button class="segment-btn active" data-tab="dashboard">
+          <span class="btn-icon">⚡</span>
+          <span>Home</span>
+        </button>
+        <button class="segment-btn" data-tab="module1">
+          <span class="btn-icon">📘</span>
+          <span>Foundations</span>
+        </button>
+        <button class="segment-btn" data-tab="module2">
+          <span class="btn-icon">🔬</span>
+          <span>Techniques</span>
+        </button>
+        <button class="segment-btn" data-tab="visualizers">
+          <span class="btn-icon">✨</span>
+          <span>Labs</span>
+        </button>
+        <button class="segment-btn" data-tab="flashcards">
+          <span class="btn-icon">🎴</span>
+          <span>Flashcards</span>
+        </button>
+        <button class="segment-btn" data-tab="pyqs">
+          <span class="btn-icon">📝</span>
+          <span>Past questions</span>
+        </button>
+        <button class="segment-btn" data-tab="quiz">
+          <span class="btn-icon">🎯</span>
+          <span>Exam Simulator</span>
+        </button>
+      </div>
+
+      <!-- Quick Action Controls -->
+      <div class="nav-actions"><button class="command-trigger" onclick="openCommandPalette()"><span>⌕</span> Find anything <kbd>⌘ K</kbd></button></div>
+    </nav>
+  </header>
+
+  <!-- Main Application Container -->
+  <main class="main-container">
+
+    <!-- ==================== TAB 1: DASHBOARD / OVERVIEW ==================== -->
+    <section id="tab-dashboard" class="tab-content active">
+      <div class="study-welcome">
+        <div class="welcome-copy">
+          <div class="eyebrow"><span class="eyebrow-dot"></span> SOFTWARE TESTING · YOUR STUDY DESK</div>
+          <h1>Make testing<br><span>make sense.</span></h1>
+          <p>Short explanations, practical examples, and a quick check after every idea. Start here, or jump to the unit you need.</p>
+          <button class="start-lesson-btn" onclick="document.getElementById('first-lesson').scrollIntoView({behavior:'smooth',block:'start'})">Start a 3-minute lesson <span>↓</span></button>
+          <div class="welcome-meta"><span>◷ 3 minutes</span><span>•</span><span>One idea, one example, one question</span></div>
+        </div>
+        <div class="welcome-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit-core">✓</div><span class="orbit-label label-test">TEST</span><span class="orbit-label label-learn">LEARN</span><span class="orbit-label label-repeat">IMPROVE</span></div>
+      </div>
+
+      <div class="home-grid">
+        <section class="first-lesson" id="first-lesson">
+          <div class="lesson-topline"><span class="lesson-kicker">YOUR FIRST IDEA</span><span class="lesson-duration">3 MIN · FOUNDATIONS</span></div>
+          <h2>Error → fault → failure</h2>
+          <p class="lesson-lead">A tiny human mistake can turn into a defect in code, and only show up as a failure when the program runs.</p>
+          <div class="concept-journey">
+            <article class="journey-step"><span class="journey-index">01 · HUMAN</span><h3>Error</h3><p>A developer misunderstands the requirement and writes subtraction instead of addition.</p></article>
+            <span class="journey-arrow">→</span>
+            <article class="journey-step"><span class="journey-index">02 · CODE</span><h3>Fault</h3><p>The wrong expression <code>return a - b</code> is now sitting in the program.</p></article>
+            <span class="journey-arrow">→</span>
+            <article class="journey-step"><span class="journey-index">03 · RUNNING</span><h3>Failure</h3><p>Input <code>5 + 3</code> produces <code>2</code>. The user sees the incorrect behavior.</p></article>
+          </div>
+          <div class="check-understanding" id="first-check">
+            <div><span class="check-label">QUICK CHECK</span><h3>The code contains <code>a - b</code> when it should add. What is that?</h3></div>
+            <div class="answer-options" role="group" aria-label="Choose the correct answer">
+              <button class="answer-option" data-answer="error" onclick="answerLesson(this,'error')">An error</button>
+              <button class="answer-option" data-answer="fault" onclick="answerLesson(this,'fault')">A fault</button>
+              <button class="answer-option" data-answer="failure" onclick="answerLesson(this,'failure')">A failure</button>
+            </div>
+            <p class="answer-feedback" id="answer-feedback" aria-live="polite"></p>
+          </div>
+          <div class="lesson-footer"><span id="lesson-progress-label">First idea · Not started</span><button class="text-link" onclick="switchTab('module1')">Open full foundations lesson →</button></div>
+        </section>
+        <aside class="study-sidebar">
+          <div class="progress-card"><div class="progress-heading"><div><span class="lesson-kicker">YOUR PROGRESS</span><h3>One idea at a time</h3></div><span class="progress-icon">↗</span></div><div class="progress-track"><span id="progress-fill"></span></div><p id="progress-summary">Answer the quick check to save your first lesson.</p></div>
+          <div class="jump-card"><span class="lesson-kicker">PICK A PATH</span><h3>What do you want to learn?</h3>
+            <button class="path-link" onclick="switchTab('module1')"><span class="path-icon green">01</span><span><strong>Testing foundations</strong><small>Models, STLC, verification</small></span><span class="path-arrow">↗</span></button>
+            <button class="path-link" onclick="switchTab('module2')"><span class="path-icon violet">02</span><span><strong>Test design techniques</strong><small>White box, black box, regression</small></span><span class="path-arrow">↗</span></button>
+            <button class="path-link" onclick="switchTab('visualizers')"><span class="path-icon amber">✳</span><span><strong>Try a hands-on lab</strong><small>See test ideas come alive</small></span><span class="path-arrow">↗</span></button>
+            <button class="path-link" onclick="switchTab('pyqs')"><span class="path-icon blue">Q</span><span><strong>Practise exam questions</strong><small>Work through solved examples</small></span><span class="path-arrow">↗</span></button>
+          </div>
+        </aside>
+      </div>
+
+      <!-- Quick Concept Comparison Pills -->
+      <div class="section-header mt-8">
+        <h2 class="section-title">Critical Distinctions at a Glance (5-Mark Hot Topics)</h2>
+        <p class="section-subtitle">The 6 most common university differentiating questions with clear tabular answers
+        </p>
+      </div>
+
+      <div class="glass-card diff-tabs-container">
+        <div class="diff-tabs-nav">
+          <button class="diff-tab-btn active" onclick="showDiffComparison('err-fault-fail')">Error vs Fault vs
+            Failure</button>
+          <button class="diff-tab-btn" onclick="showDiffComparison('verif-vs-valid')">Verification vs
+            Validation</button>
+          <button class="diff-tab-btn" onclick="showDiffComparison('smoke-vs-sanity')">Smoke vs Sanity Testing</button>
+          <button class="diff-tab-btn" onclick="showDiffComparison('white-vs-black')">White Box vs Black Box</button>
+          <button class="diff-tab-btn" onclick="showDiffComparison('bvc-vs-robust')">BVC vs Robust vs
+            Worst-Case</button>
+          <button class="diff-tab-btn" onclick="showDiffComparison('walk-vs-inspect')">Walkthrough vs
+            Inspection</button>
+          <button class="diff-tab-btn" onclick="showDiffComparison('stubs-vs-drivers')">Stubs vs Drivers</button>
+        </div>
+        <div class="diff-tab-body" id="diff-comparison-content">
+          <!-- Dynamically populated by app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 2: UNIT 1 METHODOLOGY ==================== -->
+    <section id="tab-module1" class="tab-content">
+      <div class="module-hero-banner glass-card">
+        <div class="banner-badge">Unit 1 • CO1 Course Outcome • 8 Hours</div>
+        <h2>Software Testing Methodology, Life Cycle & Verification/Validation</h2>
+        <p>Software testing is a rigorous engineering discipline of discovering defects early, measuring product
+          quality, ensuring adherence to SRS, and safeguarding stakeholder confidence.</p>
+      </div>
+
+      <!-- Sub-nav pills -->
+      <div class="sub-nav-pill">
+        <a href="#sec-1-1" class="sub-nav-link active">1.1 Goals, Models & Terminology</a>
+        <a href="#sec-1-1-models" class="sub-nav-link">Testing Models (V-Model, W-Model)</a>
+        <a href="#sec-1-1-stlc" class="sub-nav-link">STLC 6 Phases & RTM</a>
+        <a href="#sec-1-2" class="sub-nav-link">1.2 Verification (Req, HLD, LLD, Code)</a>
+        <a href="#sec-1-3" class="sub-nav-link">1.3 Validation & Testing Hierarchy</a>
+      </div>
+
+      <!-- 1.1 Goals, Terminology, Models -->
+      <div class="topic-section glass-card" id="sec-1-1">
+        <div class="topic-header">
+          <span class="topic-number">Topic 1.1</span>
+          <h3>Software Testing Goals, Core Terminology & Severity/Priority</h3>
+          <span class="marks-tag">10-Mark Frequently Asked</span>
+        </div>
+
+        <div class="grid-2col">
+          <!-- Goals of Testing -->
+          <div class="info-box">
+            <h4 class="box-title">7 Core Goals of Software Testing (From Notes Q.1A)</h4>
+            <div class="apple-numbered-list">
+              <div class="apple-num-item">
+                <span class="num-circle">1</span>
+                <div>
+                  <strong>Detect Defects (Bugs):</strong> Find faults early, when correction is often cheaper and less
+                  disruptive than after release.
+                </div>
+              </div>
+              <div class="apple-num-item">
+                <span class="num-circle">2</span>
+                <div>
+                  <strong>Verify Requirements:</strong> Check that the software’s behavior can be traced to functional
+                  and non-functional requirements in the SRS; testing helps reveal mismatches.
+                </div>
+              </div>
+              <div class="apple-num-item">
+                <span class="num-circle">3</span>
+                <div>
+                  <strong>Ensure Correctness & Reliability:</strong> Evaluate outputs, error handling, and behavior under
+                  expected use and sustained load.
+                </div>
+              </div>
+              <div class="apple-num-item">
+                <span class="num-circle">4</span>
+                <div>
+                  <strong>Validate User Needs:</strong> Confirm the software solves the actual business workflow
+                  comfortably and efficiently for end-users.
+                </div>
+              </div>
+              <div class="apple-num-item">
+                <span class="num-circle">5</span>
+                <div>
+                  <strong>Improve Security & Integrity:</strong> Find weaknesses such as injection flaws or privilege
+                  escalation risks, and check whether data protections work as intended.
+                </div>
+              </div>
+              <div class="apple-num-item">
+                <span class="num-circle">6</span>
+                <div>
+                  <strong>Reduce Risk & Cost:</strong> Finding a defect before release usually limits its impact and
+                  makes the change cheaper to contain.
+                </div>
+              </div>
+              <div class="apple-num-item">
+                <span class="num-circle">7</span>
+                <div>
+                  <strong>Compliance with Standards:</strong> Follow applicable quality, safety, security, and
+                  accessibility standards and regulations.
+                </div>
+              </div>
+            </div>
+            <aside class="memory-cue">
+              <span class="memory-label">MEMORY LINE · D V E V S R C</span>
+              <p><strong>“Diligent Verifiers Ensure Valuable Software, Reduce Costs.”</strong></p>
+              <ol>
+                <li><b>D</b>etect defects</li><li><b>V</b>erify requirements</li><li><b>E</b>nsure correctness and reliability</li>
+                <li><b>V</b>alidate user needs</li><li><b>S</b>ecure data and system integrity</li><li><b>R</b>educe risk and cost</li><li><b>C</b>omply with standards</li>
+              </ol>
+              <small>Use the initials to recall the list; explain each goal in your own words in an exam answer.</small>
+            </aside>
+            <p class="standards-note"><strong>Standards note:</strong> Keep the names in your syllabus answer. ISO/IEC 9126 is a legacy software-quality reference; <a href="https://www.iso.org/standard/78176.html" target="_blank" rel="noreferrer">ISO/IEC 25010:2023</a> is the current product-quality model.</p>
+          </div>
+
+          <!-- Terminology Box -->
+          <div class="info-box">
+            <h4 class="box-title">Testing Terminology Chain (Notes Q.1)</h4>
+            <div class="flow-chain-demo">
+              <div class="chain-step step-human">
+                <div class="step-badge">1. Human Mistake</div>
+                <div class="step-name">ERROR</div>
+                <p>A mistake, misconception, or action made by a developer during requirements, design, or coding.</p>
+                <code>e.g., developer accidentally writes "return a - b" instead of "a + b"</code>
+              </div>
+              <div class="chain-arrow">➔</div>
+              <div class="chain-step step-code">
+                <div class="step-badge">2. In Source Code / Document</div>
+                <div class="step-name">FAULT (BUG / DEFECT)</div>
+                <p>The static flaw or incorrect step in software that causes wrong execution.</p>
+                <code>e.g., "return a - b;" exists in compiled binary</code>
+              </div>
+              <div class="chain-arrow">➔</div>
+              <div class="chain-step step-runtime">
+                <div class="step-badge">3. At Runtime Execution</div>
+                <div class="step-name">FAILURE</div>
+                <p>An inability of the software to perform its required function within specified limits.</p>
+                <code>e.g., user inputs 5 + 3, system produces 2 or crashes!</code>
+              </div>
+            </div>
+
+            <div class="grid-2col mt-4">
+              <div class="mini-card">
+                <strong>Test Case:</strong> A formalized set of preconditions, input values, execution steps, expected
+                outputs, and postconditions designed for a test objective.
+              </div>
+              <div class="mini-card">
+                <strong>Test Oracle:</strong> The authoritative ground-truth reference or benchmark (SRS, legacy system,
+                manual calculator) used to evaluate whether actual == expected.
+              </div>
+            </div>
+            <aside class="memory-cue compact-cue"><span class="memory-label">DEFECT CHAIN</span><p><strong>Error in a person’s thinking → Fault in an artifact → Failure during execution.</strong></p><small>Memory hook: mistake → code flaw → observed wrong behavior.</small></aside>
+          </div>
+        </div>
+
+        <aside class="memory-cue memory-cue-wide principle-cue">
+          <span class="memory-label">THE SEVEN TESTING PRINCIPLES · EXAM RECALL</span>
+          <p><strong>“Early Testers Expect Defects; Pesticides Change Approach.”</strong></p>
+          <ol>
+            <li><b>E</b>arly testing prevents late rework</li>
+            <li><b>T</b>esting shows defects are present, not absent</li>
+            <li><b>E</b>xhaustive testing is impossible</li>
+            <li><b>D</b>efects cluster in a small number of areas</li>
+            <li><b>P</b>esticide paradox: refresh tests to find new bugs</li>
+            <li><b>C</b>ontext changes the right test approach</li>
+            <li><b>A</b>bsence of known errors does not prove fitness</li>
+          </ol>
+          <small>Use the sentence to recall the headings; add one sentence of explanation and an example for each in a long answer.</small>
+        </aside>
+
+        <!-- Severity vs Priority 2x2 Matrix Section -->
+        <div class="mt-6">
+          <h4 class="box-title">Severity vs Priority — Crucial University 5-Mark Question</h4>
+          <p class="small-text mb-3"><strong>Severity</strong> is the technical impact of a defect on system
+            functionality (Critical, Major, Minor, Trivial). <strong>Priority</strong> is the business urgency of fixing
+            the defect (High, Medium, Low).</p>
+          <aside class="memory-cue memory-cue-wide compact-cue"><span class="memory-label">FAST DISTINCTION</span><p><strong>Severity = impact on the product. Priority = urgency in the queue.</strong></p><small>Ask two separate questions: “How bad is the failure?” and “How soon must we fix it?”</small></aside>
+
+          <div class="sev-prio-grid">
+            <div class="sev-card card-hh" onclick="showSevPrioDetail('hh')">
+              <span class="sev-badge">High Severity + High Priority</span>
+              <h4>1. Critical Blocker on Core Path</h4>
+              <p>System crashes on user login or database transaction halts. Must be fixed immediately before testing
+                continues.</p>
+            </div>
+            <div class="sev-card card-hl" onclick="showSevPrioDetail('hl')">
+              <span class="sev-badge">High Severity + Low Priority</span>
+              <h4>2. Severe Crash on Obsolete/Rare Config</h4>
+              <p>System crashes when run on Windows 98 or printing to an obsolete dot-matrix printer. Technical impact
+                is fatal, but business priority is low.</p>
+            </div>
+            <div class="sev-card card-lh" onclick="showSevPrioDetail('lh')">
+              <span class="sev-badge">Low Severity + High Priority</span>
+              <h4>3. Brand/Visual Blunder on Public Page</h4>
+              <p>Company name misspelled on the homepage ("Microsft") or wrong logo on payment gateway. Functionality
+                works fine, but severe brand damage requires immediate fix.</p>
+            </div>
+            <div class="sev-card card-ll" onclick="showSevPrioDetail('ll')">
+              <span class="sev-badge">Low Severity + Low Priority</span>
+              <h4>4. Minor Cosmetic Glitch</h4>
+              <p>Slight pixel misalignment or faint font size difference in the privacy policy footnote. Fixed when time
+                permits.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testing Models: V-Model, W-Model -->
+      <div class="topic-section glass-card mt-6" id="sec-1-1-models">
+        <div class="topic-header">
+          <span class="topic-number">Topic 1.1 (Models)</span>
+          <h3>Models for Software Testing: The V-Model & W-Model</h3>
+          <span class="marks-tag">Essential Exam Diagram</span>
+        </div>
+        <aside class="memory-cue memory-cue-wide">
+          <span class="memory-label">V-MODEL · MATCH EACH BUILD STAGE TO A TEST LEVEL</span>
+          <div class="memory-steps"><span><b>Requirements</b> ↔ Acceptance</span><span><b>HLD</b> ↔ System</span><span><b>LLD</b> ↔ Integration</span><span><b>Code</b> ↔ Unit</span></div>
+          <small>Read the left side downward and the test side upward: Unit → Integration → System → Acceptance. Each test level is planned against an earlier development artifact.</small>
+        </aside>
+        <p class="section-lead">
+          Testing models structure how verification (static reviews) and validation (dynamic test runs) align with the
+          Software Development Life Cycle (SDLC).
+        </p>
+
+        <!-- V-Model Interactive Explorer -->
+        <div class="vmodel-container glass-card">
+          <div class="vmodel-grid">
+            <!-- Left: Verification Development Phases -->
+            <div class="vmodel-col">
+              <h4 style="color: var(--apple-blue); font-size: 1.05rem;">Development Phases (Verification)</h4>
+              <div class="vmodel-card" id="vm-dev-req" onclick="highlightVModelPair('req')">
+                <h4>1. Requirements Analysis</h4>
+                <p>User specifications, SRS, BRD documents.</p>
+              </div>
+              <div class="vmodel-card" id="vm-dev-hld" onclick="highlightVModelPair('hld')">
+                <h4>2. System / High Level Design (HLD)</h4>
+                <p>Overall system architecture, database design.</p>
+              </div>
+              <div class="vmodel-card" id="vm-dev-lld" onclick="highlightVModelPair('lld')">
+                <h4>3. Detailed / Low Level Design (LLD)</h4>
+                <p>Module logic, classes, algorithms, schemas.</p>
+              </div>
+              <div class="vmodel-card" id="vm-dev-code" onclick="highlightVModelPair('code')">
+                <h4>4. Coding / Implementation</h4>
+                <p>Source code written in programming languages.</p>
+              </div>
+            </div>
+
+            <!-- Middle: Animated Connecting Beams -->
+            <div class="vmodel-connector">
+              <div class="vmodel-beam" id="vm-beam-req"></div>
+              <div class="vmodel-beam" id="vm-beam-hld"></div>
+              <div class="vmodel-beam" id="vm-beam-lld"></div>
+              <div class="vmodel-beam" id="vm-beam-code"></div>
+            </div>
+
+            <!-- Right: Validation Testing Phases -->
+            <div class="vmodel-col">
+              <h4 style="color: var(--apple-purple); font-size: 1.05rem;">Testing Phases (Validation)</h4>
+              <div class="vmodel-card" id="vm-test-req" onclick="highlightVModelPair('req')">
+                <h4>Acceptance Testing (UAT)</h4>
+                <p>Validates directly against original Requirements Analysis.</p>
+              </div>
+              <div class="vmodel-card" id="vm-test-hld" onclick="highlightVModelPair('hld')">
+                <h4>System Testing</h4>
+                <p>Validates complete system against High Level Design.</p>
+              </div>
+              <div class="vmodel-card" id="vm-test-lld" onclick="highlightVModelPair('lld')">
+                <h4>Integration Testing</h4>
+                <p>Validates module interfaces against Low Level Design.</p>
+              </div>
+              <div class="vmodel-card" id="vm-test-code" onclick="highlightVModelPair('code')">
+                <h4>Unit Testing</h4>
+                <p>Validates individual code routines against Coding.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="apple-callout mt-4" id="vmodel-explanation-text">
+            💡 <em>Click any phase in the V-Model above to see how development documents map 1-to-1 to corresponding
+              testing levels!</em>
+          </div>
+        </div>
+
+        <!-- W-Model & Agile Testing Comparison -->
+            <div class="grid-2col mt-4">
+          <div class="info-box">
+            <h4 class="box-title">The W-Model (Dual V-Model)</h4>
+            <p>An extension of the V-Model where testing activities begin <strong>on Day 1 parallel to
+                development</strong>. For every development step (Requirements, HLD, LLD), there is a parallel testing
+              verification process running simultaneously.</p>
+            <ul class="apple-numbered-list mt-2">
+              <li><strong>V1 (Development):</strong> User Requirements ➔ System Design ➔ Detailed Design ➔ Coding.</li>
+              <li><strong>V2 (Testing):</strong> Review Requirements ➔ Review System Design ➔ Review Detailed Design ➔
+                Execute Code Tests.</li>
+            </ul>
+            <p class="small-text mt-2"><strong>Core Advantage:</strong> Eliminates defect slippage by treating static
+              reviews as equal partners to dynamic testing.</p>
+          </div>
+
+          <div class="info-box">
+            <h4 class="box-title">Waterfall vs Agile Testing Model</h4>
+            <div class="table-responsive">
+              <table class="apple-table">
+                <thead>
+                  <tr>
+                    <th>Dimension</th>
+                    <th>Waterfall Testing</th>
+                    <th>Agile Testing</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Testing Start</strong></td>
+                    <td>After full development finishes</td>
+                    <td>From Sprint Day 1 continuously</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Feedback Loop</strong></td>
+                    <td>Slow (months later)</td>
+                    <td>Rapid (daily / sprint-based)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Regression</strong></td>
+                    <td>Executed once at the end</td>
+                    <td>Automated in CI/CD pipeline</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Team Role</strong></td>
+                    <td>Separated QA team</td>
+                    <td>Whole-team quality ownership</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STLC & RTM Deep Dive -->
+      <div class="topic-section glass-card mt-6" id="sec-1-1-stlc">
+        <div class="topic-header">
+          <span class="topic-number">Topic 1.1 (STLC)</span>
+          <h3>Software Testing Life Cycle (STLC) & Requirement Traceability Matrix (RTM)</h3>
+          <span class="marks-tag">Full 10-Mark Notes Q.1 & Q.5</span>
+        </div>
+
+        <aside class="memory-cue memory-cue-wide">
+          <span class="memory-label">STLC ORDER · R P C E E C</span>
+          <p><strong>“Rabbits Plan Carefully, Enter Every Course.”</strong></p>
+          <div class="memory-steps"><span><b>R</b>equirement analysis</span><span><b>P</b>lan testing</span><span><b>C</b>reate test cases</span><span><b>E</b>nvironment setup</span><span><b>E</b>xecute tests</span><span><b>C</b>lose the test cycle</span></div>
+          <small>The phrase gives the order. The phase labels and deliverables below are what you should write in a full answer.</small>
+        </aside>
+
+        <!-- RTM Example Table -->
+        <div class="info-box mb-4">
+          <h4 class="box-title">Requirement Traceability Matrix (RTM) — University Example</h4>
+          <p class="small-text mb-2">An RTM links requirements to scenarios, test cases, execution status, and defects. Trace in both directions to find untested requirements and tests with no requirement link; the matrix helps measure coverage but does not guarantee it by itself.</p>
+          <div class="table-responsive">
+            <table class="apple-table">
+              <thead>
+                <tr>
+                  <th>Req ID</th>
+                  <th>Requirement Description</th>
+                  <th>Test Scenario ID</th>
+                  <th>Test Case ID</th>
+                  <th>Execution Status</th>
+                  <th>Defect ID</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>REQ-01</strong></td>
+                  <td>User Login with valid Email and Password</td>
+                  <td>TS-AUTH-01</td>
+                  <td>TC-LOGIN-01, TC-LOGIN-02</td>
+                  <td><span class="table-tag tag-valid">PASSED</span></td>
+                  <td>None</td>
+                </tr>
+                <tr>
+                  <td><strong>REQ-02</strong></td>
+                  <td>Password reset email sent on forgot password click</td>
+                  <td>TS-AUTH-02</td>
+                  <td>TC-RESET-01</td>
+                  <td><span class="table-tag tag-invalid">FAILED</span></td>
+                  <td>BUG-104</td>
+                </tr>
+                <tr>
+                  <td><strong>REQ-03</strong></td>
+                  <td>Payment gateway supports Credit Card & UPI</td>
+                  <td>TS-PAY-01</td>
+                  <td>TC-PAY-01, TC-PAY-02</td>
+                  <td><span class="table-tag tag-valid">PASSED</span></td>
+                  <td>None</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 16 Sections of IEEE 829 Test Plan -->
+        <div class="info-box">
+          <h4 class="box-title">Legacy syllabus reference: IEEE 829 test plan structure (16 sections)</h4>
+          <p class="small-text mb-2">Keep this 16-section outline if your exam expects it. IEEE 829-2008 is superseded; the ISO/IEC/IEEE 29119 series is the current software-testing standards family, with test documentation covered in Part 3. <a href="https://standards.ieee.org/ieee/829/3787/" target="_blank" rel="noreferrer">IEEE status</a> · <a href="https://www.iso.org/standard/79429.html" target="_blank" rel="noreferrer">ISO test documentation</a>.</p>
+          <div class="grid-4col" style="font-size: 0.82rem;">
+            <div class="mini-card">1. Test Plan Identifier<br>2. Introduction<br>3. Test Items (Scope)<br>4. Features to
+              be Tested</div>
+            <div class="mini-card">5. Features NOT to be Tested<br>6. Approach (Strategy)<br>7. Item Pass/Fail
+              Criteria<br>8. Suspension Criteria</div>
+            <div class="mini-card">9. Test Deliverables<br>10. Testing Tasks<br>11. Environmental Needs<br>12.
+              Responsibilities</div>
+            <div class="mini-card">13. Staffing & Training<br>14. Schedule & Milestones<br>15. Risks &
+              Contingencies<br>16. Approvals (Sign-off)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1.2 Verification -->
+      <div class="topic-section glass-card mt-6" id="sec-1-2">
+        <div class="topic-header">
+          <span class="topic-number">Topic 1.2</span>
+          <h3>Verification — Requirements, High Level Design, Low Level Design & Code</h3>
+          <span class="marks-tag">Static Testing Pillar</span>
+        </div>
+        <aside class="memory-cue memory-cue-wide"><span class="memory-label">VERIFICATION ≠ VALIDATION</span><p><strong>Verification:</strong> “Are we building the product right?” Review the work products against their specifications. <strong>Validation:</strong> “Are we building the right product?” Exercise the software against user needs.</p></aside>
+        <p class="section-lead">
+          Verification is the static evaluation process of checking whether the intermediate products of a development
+          phase satisfy the conditions imposed at the start of that phase (<em>"Are we building the product
+            right?"</em>).
+        </p>
+
+        <div class="grid-4col">
+          <div class="v-card glass-card">
+            <div class="v-card-icon">📄</div>
+            <h4>1. Verification of Requirements</h4>
+            <p>Static examination of SRS & BRD documents for completeness, consistency, feasibility, and testability.
+              Eliminates ambiguities like "system must respond quickly".</p>
+            <div class="check-tags">
+              <span>Ambiguity checks</span>
+              <span>RTM coverage</span>
+              <span>Testability</span>
+            </div>
+          </div>
+
+          <div class="v-card glass-card">
+            <div class="v-card-icon">🏛️</div>
+            <h4>2. Verification of High Level Design (HLD)</h4>
+            <p>Checks overall architecture, modularity, data flow, subsystem decomposition, database schemas, and
+              external API interfaces (Notes Q.1B).</p>
+            <div class="check-tags">
+              <span>Architecture</span>
+              <span>Modularity</span>
+              <span>Traceability</span>
+              <span>Feasibility</span>
+            </div>
+          </div>
+
+          <div class="v-card glass-card">
+            <div class="v-card-icon">⚙️</div>
+            <h4>3. Verification of Low Level Design (LLD)</h4>
+            <p>Inspects detailed internal class designs, method signatures, data structures, state charts, algorithmic
+              complexity, and error-handling routines before coding.</p>
+            <div class="check-tags">
+              <span>Class logic</span>
+              <span>Algorithms</span>
+              <span>Exception handling</span>
+            </div>
+          </div>
+
+          <div class="v-card glass-card">
+            <div class="v-card-icon">💻</div>
+            <h4>4. Verification of Code</h4>
+            <p>Peer code reviews, desk checking, structured walkthroughs, Fagan inspections, and automated static
+              analyzers (SonarQube, ESLint) to catch syntax and logic flaws.</p>
+            <div class="check-tags">
+              <span>Standards</span>
+              <span>Memory safety</span>
+              <span>Static analysis</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1.3 Validation -->
+      <div class="topic-section glass-card mt-6" id="sec-1-3">
+        <div class="topic-header">
+          <span class="topic-number">Topic 1.3</span>
+          <h3>Validation — Unit, Integration, Function, Sanity, System & Acceptance</h3>
+          <span class="marks-tag">Dynamic Execution Pillar</span>
+        </div>
+        <aside class="memory-cue memory-cue-wide"><span class="memory-label">INTEGRATION TESTING · REMEMBER THE TEST DOUBLE</span><p><strong>“Top-down uses Stubs; Bottom-up uses Drivers.”</strong> A stub stands in for a lower module that has not been integrated yet. A driver calls a lower-level module when the higher-level caller is not ready.</p></aside>
+        <p class="section-lead">
+          Validation is the dynamic evaluation process of executing the actual compiled software on target test
+          environments to check whether it satisfies user needs and business goals (<em>"Are we building the right
+            product?"</em>).
+        </p>
+
+        <!-- Stubs and Drivers Deep Dive -->
+        <div class="info-box mb-6">
+          <h4 class="box-title">Integration Strategies: Stubs vs Drivers (Crucial Exam Concept)</h4>
+          <p class="small-text mb-3">When testing modules in incremental integration, missing subordinate or
+            superordinate modules must be replaced with dummy code.</p>
+          <div class="stub-driver-stage">
+            <div class="module-box" style="text-align: left;">
+              <h5 style="color: var(--apple-blue); margin-bottom: 6px;">Top-Down Integration (Uses STUBS)</h5>
+              <p class="small-text">Starts from the top-level calling module down to sub-modules. If lower modules are
+                not yet developed, dummy <strong>STUBS</strong> are used to simulate responses.</p>
+              <div class="mt-3 p-2 mini-card">
+                <strong>STUB Definition:</strong> A dummy called routine that receives calls from a higher-level module
+                and returns hardcoded simulated responses.
+              </div>
+            </div>
+            <div class="module-box" style="text-align: left;">
+              <h5 style="color: var(--apple-amber); margin-bottom: 6px;">Bottom-Up Integration (Uses DRIVERS)</h5>
+              <p class="small-text">Starts from lowest-level atomic modules up to higher callers. If the parent module
+                is not ready, a dummy <strong>DRIVER</strong> is written to invoke the test unit.</p>
+              <div class="mt-3 p-2 mini-card">
+                <strong>DRIVER Definition:</strong> A dummy calling routine that invokes the lower module under test,
+                passes test data, and collects the returned output.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testing Levels Grid -->
+        <div class="grid-3col">
+          <div class="info-box">
+            <h4 class="box-title">Unit Testing</h4>
+            <p>Tests individual functions or procedures in complete isolation. Performed by developers using frameworks
+              like pytest, JUnit.</p>
+            <code>assert add(2, 3) == 5</code>
+          </div>
+          <div class="info-box">
+            <h4 class="box-title">Integration Testing</h4>
+            <p>Tests interface communication between connected modules. Includes Pair-wise (Notes Q.1C), Big-Bang,
+              Top-Down, Bottom-Up, and Sandwich approaches. Here, pair-wise means testing module pairs; it is different from combinatorial all-pairs testing of input values.</p>
+          </div>
+          <div class="info-box">
+            <h4 class="box-title">Function Testing</h4>
+            <p>Verifies software features against functional requirement specifications without regard to internal
+              system architecture.</p>
+          </div>
+          <div class="info-box">
+            <h4 class="box-title">Sanity Testing</h4>
+            <p>A quick, focused subset of regression testing performed on a stable build to verify that a specific bug
+              fix actually works without breaking major features.</p>
+          </div>
+          <div class="info-box">
+            <h4 class="box-title">System Testing</h4>
+            <p>End-to-end testing of the complete software system against SRS: Performance, Load, Stress, Security,
+              Disaster Recovery, and Compatibility.</p>
+          </div>
+          <div class="info-box">
+            <h4 class="box-title">Acceptance Testing (UAT)</h4>
+            <p>Final sign-off by end-users. Includes <strong>Alpha Testing</strong> (internal site, controlled) and
+              <strong>Beta Testing</strong> (real customer environment).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 3: UNIT 2 TECHNIQUES ==================== -->
+    <section id="tab-module2" class="tab-content">
+      <div class="module-hero-banner glass-card purple-gradient">
+        <div class="banner-badge">Unit 2 • CO2 Course Outcome • 16 Hours</div>
+        <h2>Testing Techniques: Static, Dynamic & Regression</h2>
+        <p>Master White Box testing (Basis Path, CFG, Cyclomatic Complexity), Black Box (BVA, ECT, Decision Tables),
+          Static Reviews, and Regression strategies.</p>
+      </div>
+
+      <!-- Sub Navigation -->
+      <div class="sub-nav-pill">
+        <a href="#sec-2-1" class="sub-nav-link active">2.1 Static Testing (Walkthrough & Inspection)</a>
+        <a href="#sec-2-2-white" class="sub-nav-link">2.2 Dynamic: White Box & CFG</a>
+        <a href="#sec-2-2-black" class="sub-nav-link">2.2 Dynamic: Black Box (BVA, ECT, Decision)</a>
+        <a href="#sec-2-3" class="sub-nav-link">2.3 Regression Testing</a>
+      </div>
+
+      <!-- 2.1 Static Testing -->
+      <div class="topic-section glass-card" id="sec-2-1">
+        <div class="topic-header">
+          <span class="topic-number">Topic 2.1</span>
+          <h3>Static Testing — Reviews, Structured Walkthrough & Fagan Inspection</h3>
+          <span class="marks-tag">10M Theory Exam Core</span>
+        </div>
+
+        <div class="grid-3col">
+          <!-- Reviews -->
+          <div class="info-card glass-card">
+            <h4>1. Reviews</h4>
+            <p>Manual verification of work products by one or more peers:</p>
+            <ul class="mini-steps mt-2">
+              <li><strong>Informal Review:</strong> Casual peer desk-check; no pre-meeting notes or defect metrics
+                logged.</li>
+              <li><strong>Formal Review:</strong> Pre-scheduled with strict agenda, entry/exit criteria, and documented
+                minutes.</li>
+              <li><strong>Technical Review:</strong> Conducted by technical architects and peers to verify engineering
+                decisions.</li>
+            </ul>
+          </div>
+
+          <!-- Walkthrough -->
+          <div class="info-card glass-card">
+            <h4>2. Structured Walkthrough (Notes Q.2A)</h4>
+            <p>An informal to semi-formal review led by the <strong>Author</strong>:</p>
+            <div class="roles-badge-group mt-2">
+              <span class="table-tag tag-valid">Moderator (Chairs meeting)</span>
+              <span class="table-tag tag-valid">Author (Presents code)</span>
+              <span class="table-tag tag-valid">Reviewers (Find bugs)</span>
+              <span class="table-tag tag-valid">Scribe (Takes notes)</span>
+            </div>
+            <h5 class="mt-3">6 Sequential Steps:</h5>
+            <p class="small-text mt-1">1. Planning ➔ 2. Overview ➔ 3. Individual Review ➔ 4. Walkthrough Meeting ➔ 5.
+              Rework ➔ 6. Follow-up.</p>
+          </div>
+
+          <!-- Inspection -->
+          <div class="info-card glass-card">
+            <h4>3. Fagan Inspection</h4>
+            <p>The most formal, rigorous static defect detection method:</p>
+            <ul class="mini-steps mt-2">
+              <li>Led by a trained, independent <strong>Moderator</strong> (never the author!).</li>
+              <li>Strict 6-step lifecycle: Planning, Overview, Preparation, Inspection Meeting, Rework, Follow-up.</li>
+              <li>Defect metrics, inspection checklists, and defect densities are formally recorded for CMMI quality
+                audit.</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="memory-cue memory-cue-wide compact-cue"><span class="memory-label">WALKTHROUGH · SIX STEPS</span><div class="memory-steps"><span><b>1</b> Plan</span><span><b>2</b> Overview</span><span><b>3</b> Individual review</span><span><b>4</b> Meeting</span><span><b>5</b> Rework</span><span><b>6</b> Follow-up</span></div><small>Recall the sequence as <strong>P-O-R-M-R-F</strong>. Do not mix it with Fagan inspection’s Preparation step.</small></aside>
+
+        <!-- Static Analysis Tools -->
+        <div class="info-box mt-4">
+          <h4 class="box-title">Static Analysis Tools (Notes Page 12)</h4>
+          <p>Automated software tools that parse source code without running it to detect syntax errors, dead code,
+            memory leaks, security vulnerabilities, and coding standard violations.</p>
+          <div class="grid-4col mt-2">
+            <div class="mini-card"><strong>SonarQube:</strong> Continuous code quality, technical debt, security
+              hotspots.</div>
+            <div class="mini-card"><strong>ESLint:</strong> JavaScript/TypeScript linting, style & syntax rules.</div>
+            <div class="mini-card"><strong>Checkstyle:</strong> Java adherence to corporate coding standards.</div>
+            <div class="mini-card"><strong>PMD / FindBugs:</strong> Unused variables, empty catch blocks, dead objects.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2.2 White Box Testing & CFG -->
+      <div class="topic-section glass-card mt-6" id="sec-2-2-white">
+        <div class="topic-header">
+          <span class="topic-number">Topic 2.2 (White Box)</span>
+          <h3>Basis Path Testing, Control Flow Graph (CFG) & Cyclomatic Complexity</h3>
+          <span class="marks-tag">High-value practice question</span>
+        </div>
+          <p class="section-lead">
+          White-box (structural) testing examines internal code structure. Basis Path Testing uses cyclomatic complexity to choose a set of linearly independent execution paths. A feasible basis suite provides strong statement and branch coverage for the represented control-flow graph.
+        </p>
+
+        <!-- 3 Formulas Card -->
+        <div class="formula-banner glass-card">
+          <h4>3 Equivalent Methods for Cyclomatic Complexity V(G)</h4>
+          <div class="grid-3col">
+            <div class="formula-card">
+              <span class="f-method">Method 1 (Predicate Nodes)</span>
+              <div class="f-equation">V(G) = P + 1</div>
+              <span class="f-desc">P = Number of predicate decision nodes (if, while, for)</span>
+            </div>
+            <div class="formula-card">
+              <span class="f-method">Method 2 (Edges & Nodes)</span>
+              <div class="f-equation">V(G) = E - N + 2</div>
+              <span class="f-desc">E = Flow edges, N = CFG execution nodes</span>
+            </div>
+            <div class="formula-card">
+              <span class="f-method">Method 3 (Regions)</span>
+              <div class="f-equation">V(G) = R</div>
+              <span class="f-desc">R = Enclosed planar regions + 1 unbounded outer region</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="memory-cue memory-cue-wide mt-4">
+          <span class="memory-label">CYCLOMATIC COMPLEXITY · THREE WAYS TO CHECK</span>
+          <p><strong>“Decisions + 1 · Edges − Nodes + 2 · Regions.”</strong></p>
+          <div class="worked-example"><span>Example: 1 decision, 6 edges, 6 nodes, 2 regions</span><code>P + 1 = 1 + 1 = 2</code><code>E − N + 2 = 6 − 6 + 2 = 2</code><code>R = 2</code></div>
+          <small>All three should agree for a connected control-flow graph. V(G) gives the number of linearly independent paths, not every possible execution path.</small>
+        </aside>
+
+        <!-- Additional White Box Techniques -->
+        <div class="grid-3col mt-4">
+          <div class="info-card glass-card">
+            <h4>Loop Testing</h4>
+            <p>Focuses on validity of loop boundary iterations:</p>
+            <ul>
+              <li><strong>Simple Loops ($n$ max passes):</strong> Test 0 passes, 1 pass, 2 passes, typical $m$ passes,
+                $n-1$, $n$, and $n+1$ passes.</li>
+              <li><strong>Nested Loops:</strong> Start at innermost loop, hold outer loops at minimum values, and work
+                outwards.</li>
+              <li><strong>Concatenated Loops:</strong> If loops are independent, test each separately; if dependent,
+                treat as nested.</li>
+            </ul>
+          </div>
+          <div class="info-card glass-card">
+            <h4>Data Flow Testing</h4>
+            <p>Selects test paths according to the lifecycle of variables:</p>
+            <ul>
+              <li><strong>Definition ($d$):</strong> Variable is created or assigned value.</li>
+              <li><strong>Usage ($u$):</strong> Predicate use ($p$-use in if-conditions) or Computation use ($c$-use in
+                expressions).</li>
+              <li><strong>du-path:</strong> Definition-clear path from variable definition to usage.</li>
+            </ul>
+          </div>
+          <div class="info-card glass-card">
+            <h4>Mutation Testing</h4>
+            <p>Evaluates the quality of a test suite by injecting synthetic bugs (mutants):</p>
+            <ul>
+              <li><strong>Mutant:</strong> Code version with a deliberate fault (e.g. changing <code>&gt;</code> to
+                <code>&gt;=</code>).</li>
+              <li><strong>Killed:</strong> Test case fails, exposing the fault.</li>
+              <li><strong>Survived:</strong> All tests pass, exposing a test hole.</li>
+              <li><strong>Score:</strong> $MS = [K / (M - E)] \times 100\%$.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2.2 Black Box Testing -->
+      <div class="topic-section glass-card mt-6" id="sec-2-2-black">
+        <div class="topic-header">
+          <span class="topic-number">Topic 2.2 (Black Box)</span>
+          <h3>Boundary Value Analysis (BVA), Equivalence Class Testing (ECT) & Decision Tables</h3>
+          <span class="marks-tag">Essential University Numericals</span>
+        </div>
+
+        <!-- BVA Formulas and Comparison -->
+        <div class="info-box mb-4">
+            <h4 class="box-title">Boundary Value Analysis (BVA) Formulas for $n$ Variables</h4>
+            <p class="small-text mb-2"><strong>Recall:</strong> Standard BVC = 4 boundary points per input + one all-nominal case; Robust adds two invalid points per input; Worst-case takes the Cartesian product of the five valid values for every input.</p>
+          <div class="table-responsive">
+            <table class="apple-table">
+              <thead>
+                <tr>
+                  <th>Technique</th>
+                  <th>Values Evaluated per Variable</th>
+                  <th>Formula ($n$ variables)</th>
+                  <th>Example (3 Variables)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Standard BVC</strong></td>
+                  <td>$min, min+1, nom, max-1, max$ (Valid only)</td>
+                  <td><code>4n + 1</code></td>
+                  <td>$4(3) + 1 = \mathbf{13}$</td>
+                </tr>
+                <tr>
+                  <td><strong>Robust Testing</strong></td>
+                  <td>$min-1, min, min+1, nom, max-1, max, max+1$ (Includes invalid)</td>
+                  <td><code>6n + 1</code></td>
+                  <td>$6(3) + 1 = \mathbf{19}$</td>
+                </tr>
+                <tr>
+                  <td><strong>Worst-Case Testing</strong></td>
+                  <td>All combinations of $\{min, min+1, nom, max-1, max\}$</td>
+                  <td><code>5^n</code></td>
+                  <td>$5^3 = \mathbf{125}$</td>
+                </tr>
+                <tr>
+                  <td><strong>Robust Worst-Case</strong></td>
+                  <td>All combinations of $\{min-1, min, min+1, nom, max-1, max, max+1\}$</td>
+                  <td><code>7^n</code></td>
+                  <td>$7^3 = \mathbf{343}$</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="memory-cue-grid">
+          <aside class="memory-cue"><span class="memory-label">BVA · COUNTS AT A GLANCE</span><p><strong>4n + 1</strong> standard · <strong>6n + 1</strong> robust · <strong>5<sup>n</sup></strong> worst-case.</p><small>Single-variable boundary checks grow linearly. Worst-case combinations multiply across inputs.</small></aside>
+          <aside class="memory-cue"><span class="memory-label">TEST LEVELS · U I S A</span><p><strong>“Use It, Scale, Accept.”</strong></p><small><b>U</b>nit → <b>I</b>ntegration → <b>S</b>ystem → <b>A</b>cceptance. Use the order to place a test in the hierarchy.</small></aside>
+          <aside class="memory-cue"><span class="memory-label">ACCESSIBILITY · POUR</span><p><strong>Perceivable · Operable · Understandable · Robust</strong></p><small>For each interface, ask: Can users perceive it, operate it, understand it, and use it with different technologies?</small></aside>
+        </div>
+
+        <div class="grid-2col">
+          <!-- Equivalence Class Testing -->
+          <div class="info-box">
+            <h4 class="box-title">Equivalence Class Testing (ECT) Taxonomy</h4>
+            <p>Partitions input domain into classes where every element within a class produces identical program
+              behavior.</p>
+            <div class="apple-numbered-list mt-2">
+              <div class="apple-num-item">
+                <span class="num-circle">1</span>
+                <div><strong>Weak Normal ECT:</strong> One test case from each valid equivalence class.</div>
+              </div>
+              <div class="apple-num-item">
+                <span class="num-circle">2</span>
+                <div><strong>Strong Normal ECT:</strong> Cartesian product of valid classes from all inputs.</div>
+              </div>
+              <div class="apple-num-item">
+                <span class="num-circle">3</span>
+                <div><strong>Weak Robust ECT:</strong> Tests one value from each invalid class alongside valid values
+                  for other variables.</div>
+              </div>
+              <div class="apple-num-item">
+                <span class="num-circle">4</span>
+                <div><strong>Strong Robust ECT:</strong> Tests all combinations of both valid and invalid classes.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Decision Table Based Testing -->
+          <div class="info-box">
+            <h4 class="box-title">Decision Table Based Testing</h4>
+            <p>Ideal for complex business logic with multiple Boolean conditions. Consists of 4 quadrants:</p>
+            <div class="grid-2col mt-2">
+              <div class="mini-card"><strong>1. Condition Stub:</strong> List of input conditions / rules.</div>
+              <div class="mini-card"><strong>2. Condition Entry:</strong> Boolean values (T/F or Y/N).</div>
+              <div class="mini-card"><strong>3. Action Stub:</strong> List of possible outputs / actions.</div>
+              <div class="mini-card"><strong>4. Action Entry:</strong> Checkmarks (X) for fired actions.</div>
+            </div>
+            <div class="apple-callout mt-2">
+              For $C$ independent binary conditions, the full table has up to $2^C$ rules. Mark infeasible combinations as don’t-cares or simplify them only when the requirements justify it.
+            </div>
+          </div>
+        </div>
+
+        <!-- Usability & Accessibility Testing -->
+        <div class="info-box mt-4">
+            <h4 class="box-title">Usability & Accessibility Testing (Notes Q.3 Option 2)</h4>
+          <div class="grid-2col">
+            <div>
+              <h5 style="color: var(--apple-blue); margin-bottom: 6px;">Usability Testing</h5>
+              <p class="small-text">Tests how intuitive, easy, and pleasant the software is for human users. Focuses on
+                Jakob Nielsen's 5 Quality Components:</p>
+              <ul class="mini-steps mt-1">
+                <li><strong>Learnability:</strong> How easily first-time users accomplish basic tasks.</li>
+                <li><strong>Efficiency:</strong> How quickly experienced users complete workflows.</li>
+                <li><strong>Memorability:</strong> How easily users re-establish proficiency after a hiatus.</li>
+                <li><strong>Errors:</strong> How many errors users make and how easily they recover.</li>
+                <li><strong>Satisfaction:</strong> How pleasant the user interface feels.</li>
+              </ul>
+            </div>
+            <div>
+              <h5 style="color: var(--apple-green); margin-bottom: 6px;">Accessibility Testing (WCAG 2.2)</h5>
+              <p class="small-text">Ensures software is accessible to users with visual, auditory, motor, or cognitive
+                disabilities. Built on the 4 <strong>POUR</strong> principles:</p>
+              <p class="standards-note">If your exam specifically asks for WCAG 2.1, use that syllabus wording. For current practice, W3C recommends using the latest version, <a href="https://www.w3.org/TR/wcag/" target="_blank" rel="noreferrer">WCAG 2.2</a>; it adds criteria while keeping existing 2.1 criteria unchanged.</p>
+              <ul class="mini-steps mt-1">
+                <li><strong>Perceivable:</strong> Content presented through multiple senses (alt text, captions).</li>
+                <li><strong>Operable:</strong> UI operated via keyboard alone; no time-limited traps.</li>
+                <li><strong>Understandable:</strong> Clear text, predictable navigation, error guidance.</li>
+                <li><strong>Robust:</strong> Compatible with assistive technologies (screen readers like NVDA,
+                  VoiceOver).</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2.3 Regression Testing -->
+      <div class="topic-section glass-card mt-6" id="sec-2-3">
+        <div class="topic-header">
+          <span class="topic-number">Topic 2.3</span>
+          <h3>Regression Testing — Objectives, Need & Types</h3>
+          <span class="marks-tag">10M Theory Exam Core (Notes Q.2B)</span>
+        </div>
+
+        <div class="grid-2col">
+          <div class="info-box">
+            <h4 class="box-title">What & Why Regression Testing?</h4>
+            <p><strong>Definition:</strong> Re-running previously passed test cases to ensure that recent code
+              modifications, bug fixes, or enhancements have not unintentionally broken existing functionalities.</p>
+            <h5 class="mt-3">Trigger Events (When is it performed?):</h5>
+            <ul class="apple-bullet-list">
+              <li>After fixing a reported bug or defect.</li>
+              <li>After adding a new feature or module to the codebase.</li>
+              <li>After software refactoring or performance optimization.</li>
+              <li>After underlying OS, database, or dependency updates.</li>
+            </ul>
+          </div>
+
+          <div class="info-box">
+            <h4 class="box-title">Types of Regression Testing</h4>
+            <div class="apple-numbered-list">
+              <div class="apple-num-item">
+                <span class="num-circle">1</span>
+                <div><strong>Retest-All:</strong> Re-executes the entire suite of test cases. Very safe but
+                  computationally expensive.</div>
+              </div>
+              <div class="apple-num-item">
+                <span class="num-circle">2</span>
+                <div><strong>Selective Regression:</strong> Only runs test cases affected by the modified modules or
+                  dependent components.</div>
+              </div>
+              <div class="apple-num-item">
+                <span class="num-circle">3</span>
+                <div><strong>Progressive Regression:</strong> Applied when specifications change, designing new test
+                  cases without breaking old ones.</div>
+              </div>
+              <div class="apple-num-item">
+                <span class="num-circle">4</span>
+                <div><strong>Corrective Regression:</strong> Done when no changes were made to specifications, re-using
+                  existing test cases.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <aside class="memory-cue memory-cue-wide compact-cue"><span class="memory-label">REGRESSION · FOUR COMMON TYPES</span><p><strong>“Careful Planners Retest Selectively”</strong> → <b>C</b>orrective · <b>P</b>rogressive · <b>R</b>etest-all · <b>S</b>elective.</p><small>Corrective reuses existing tests when requirements are unchanged; progressive adds or adapts tests for changed requirements.</small></aside>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 4: INTERACTIVE LABS ==================== -->
+    <section id="tab-visualizers" class="tab-content">
+      <div class="module-hero-banner glass-card blue-purple-gradient">
+        <div class="banner-badge">Interactive Apple Simulators</div>
+        <h2>Hands-on Testing Labs & Visualizers</h2>
+        <p>Interact directly with the exact numerical algorithms from your university exam and watch software testing
+          principles come to life.</p>
+      </div>
+
+      <!-- Lab Switcher Navigation -->
+      <div class="lab-pill-nav">
+        <button class="lab-nav-btn active" onclick="switchLab('cfg')">⚡ CFG & Complexity</button>
+        <button class="lab-nav-btn" onclick="switchLab('bva')">📏 BVA & Robust Generator</button>
+        <button class="lab-nav-btn" onclick="switchLab('mutation')">🧬 Mutation Testing Lab</button>
+        <button class="lab-nav-btn" onclick="switchLab('bug')">🐞 Bug State Machine</button>
+        <button class="lab-nav-btn" onclick="switchLab('stlc')">🔄 STLC 6-Phase Pipeline</button>
+        <button class="lab-nav-btn" onclick="switchLab('wcag')">👁️ Accessibility & WCAG</button>
+      </div>
+
+      <!-- LAB 1: CFG & Cyclomatic Complexity Simulator -->
+      <div class="lab-card glass-card active" id="lab-cfg">
+          <div class="lab-header">
+          <div>
+            <h3>Control Flow Graph (CFG) & Basis Path Explorer</h3>
+            <p>Direct implementation of University PYQ: <em>Code with condition <code>if (a &gt; b)</code> from Notes
+                Page 7</em></p>
+          </div>
+          <div class="lab-actions">
+            <button class="btn-sm btn-secondary" onclick="resetCFG()">Reset Graph</button>
+          </div>
+        </div>
+
+        <div class="cfg-workspace-grid">
+          <!-- Code View -->
+          <div class="code-editor-box glass-card">
+            <div class="editor-header">
+              <span class="editor-dot red"></span>
+              <span class="editor-dot yellow"></span>
+              <span class="editor-dot green"></span>
+              <span class="file-name">example.c (University Question)</span>
+            </div>
+            <pre class="code-display" id="cfg-code-display">
+<span class="code-line" id="code-line-1"><span class="line-num">1</span>  #include &lt;stdio.h&gt;</span>
+<span class="code-line" id="code-line-2"><span class="line-num">2</span>  int main() {</span>
+<span class="code-line" id="code-line-3"><span class="line-num">3</span>      int a, b, x, y;</span>
+<span class="code-line" id="code-line-4"><span class="line-num">4</span>      printf("Enter values: ");</span>
+<span class="code-line" id="code-line-5"><span class="line-num">5</span>      scanf("%d %d %d %d", &a, &b, &x, &y);</span>
+<span class="code-line" id="code-line-6"><span class="line-num">6</span>      <strong class="highlight-condition">if (a &gt; b)</strong> {</span>
+<span class="code-line" id="code-line-7"><span class="line-num">7</span>          x = x + y;       <span class="comment">// Path P1 (True)</span></span>
+<span class="code-line" id="code-line-8"><span class="line-num">8</span>      } else {</span>
+<span class="code-line" id="code-line-9"><span class="line-num">9</span>          x = y;           <span class="comment">// Path P2 (False)</span></span>
+<span class="code-line" id="code-line-10"><span class="line-num">10</span>     }</span>
+<span class="code-line" id="code-line-11"><span class="line-num">11</span>     printf("Result: %d\n", x);</span>
+<span class="code-line" id="code-line-12"><span class="line-num">12</span>     return 0;</span>
+<span class="code-line" id="code-line-13"><span class="line-num">13</span> }</span></pre>
+
+            <div class="test-inputs-bar">
+              <div class="input-inline">
+                <label>a:</label>
+                <input type="number" id="cfg-input-a" value="5" class="apple-input-sm">
+              </div>
+              <div class="input-inline">
+                <label>b:</label>
+                <input type="number" id="cfg-input-b" value="3" class="apple-input-sm">
+              </div>
+              <div class="input-inline">
+                <label>x:</label>
+                <input type="number" id="cfg-input-x" value="2" class="apple-input-sm">
+              </div>
+              <div class="input-inline">
+                <label>y:</label>
+                <input type="number" id="cfg-input-y" value="4" class="apple-input-sm">
+              </div>
+              <button class="btn-primary-sm" onclick="runCFGSimulation()">Run & Trace Path</button>
+            </div>
+          </div>
+
+          <!-- Interactive SVG CFG Canvas -->
+          <div class="cfg-graph-box glass-card">
+            <div class="graph-header">
+              <span class="graph-title">Control Flow Graph (Nodes & Edges)</span>
+              <div class="path-selectors">
+                <button class="badge-btn" onclick="highlightPath('P1')">Trace Path P1 (True)</button>
+                <button class="badge-btn" onclick="highlightPath('P2')">Trace Path P2 (False)</button>
+              </div>
+            </div>
+
+            <div class="canvas-container">
+              <svg id="cfg-svg" viewBox="0 0 400 480" width="100%" height="440"></svg>
+            </div>
+
+            <!-- Live Calculation Output -->
+            <div class="live-metrics-footer">
+              <div class="metric-pill">
+                <span class="m-label">Formula 1 (P+1):</span>
+                <span class="m-val" id="metric-p">1 + 1 = 2</span>
+              </div>
+              <div class="metric-pill">
+                <span class="m-label">Formula 2 (E-N+2):</span>
+                <span class="m-val" id="metric-en">6 - 6 + 2 = 2</span>
+              </div>
+              <div class="metric-pill">
+                <span class="m-label">Formula 3 (Regions):</span>
+                <span class="m-val" id="metric-r">R1 + R2 = 2</span>
+              </div>
+              <div class="metric-pill active-pill">
+                <span class="m-label">Required Test Cases:</span>
+                <span class="m-val">V(G) = 2</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="execution-result-card glass-card mt-4" id="cfg-execution-feedback">
+          <div class="feedback-status">💡 Click "Run & Trace Path" to watch the token travel through the graph in
+            real-time.</div>
+        </div>
+      </div>
+
+      <!-- LAB 2: BVA & Robust Test Case Generator -->
+      <div class="lab-card glass-card" id="lab-bva">
+        <div class="lab-header">
+          <div>
+            <h3>Boundary Value Analysis & Robust Test Generator</h3>
+            <p>Choose a range for each input, select the test strategy, and inspect every generated case. The presets mirror the age, three-number, and exponent exercises.</p>
+          </div>
+          <div class="presets-group">
+            <button class="preset-btn" onclick="loadBVAPreset('age')">Age [18, 60]</button>
+            <button class="preset-btn" onclick="loadBVAPreset('largest3')">3 Numbers [1, 50]</button>
+            <button class="preset-btn" onclick="loadBVAPreset('power')">a ∈ [1,8], b ∈ [1,4]</button>
+          </div>
+        </div>
+
+        <div class="bva-controls-bar glass-card">
+          <div class="bva-inputs">
+            <div class="control-group">
+              <label for="bva-variables">Number of inputs (n):</label>
+              <input type="number" id="bva-variables" value="1" min="1" max="4" step="1" class="apple-input" onchange="updateBVARangeInputs()">
+            </div>
+            <div class="control-group">
+              <label>Test Mode:</label>
+              <select id="bva-mode" class="apple-select" onchange="generateBVATable()">
+                <option value="bvc">Standard BVC (Valid Boundary Only - 4n+1)</option>
+                <option value="robust" selected>Robust Testing (Includes Invalid Boundaries - 6n+1)</option>
+                <option value="worst">Worst-Case Boundary Testing (all 5^n combinations)</option>
+              </select>
+            </div>
+            <button class="btn-primary" onclick="generateBVATable()">Compute Test Cases</button>
+          </div>
+          <div class="bva-variable-ranges" id="bva-variable-ranges" aria-live="polite">
+            <fieldset class="bva-range-input"><legend>Input 1 (shown on number line)</legend><label for="bva-min-1">Minimum</label><input id="bva-min-1" type="number" step="1" value="18" aria-label="Input 1 minimum"><label for="bva-max-1">Maximum</label><input id="bva-max-1" type="number" step="1" value="60" aria-label="Input 1 maximum"></fieldset>
+          </div>
+          <p class="bva-hint">Integer ranges are allowed to be narrow. If nominal and boundary points overlap, duplicate input vectors are removed and reported. Worst-case output is capped at 4 inputs (625 planned combinations).</p>
+        </div>
+
+        <!-- Interactive Visual Number Line -->
+        <div class="number-line-container glass-card mt-4">
+          <h4 class="mb-2">Interactive Number Line Visualization</h4>
+          <div class="number-line-graphic" id="number-line-display"></div>
+        </div>
+
+        <!-- Output Table -->
+        <div class="bva-results-card glass-card mt-4">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <h4>Generated University-Format Test Case Table</h4>
+            <span class="count-badge" id="bva-case-count">7 Test Cases</span>
+          </div>
+          <div class="table-responsive">
+            <table class="apple-table" id="bva-table">
+              <thead>
+                <tr>
+                  <th>TC ID</th>
+                  <th>Input Value</th>
+                  <th>Type / Boundary</th>
+                  <th>Expected Result</th>
+                  <th>Classification</th>
+                  <th>Why included</th>
+                </tr>
+              </thead>
+              <tbody id="bva-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- LAB 3: Mutation Testing Lab -->
+      <div class="lab-card glass-card" id="lab-mutation">
+        <div class="lab-header">
+          <div>
+            <h3>Mutation Testing Interactive Simulator</h3>
+            <p>Inject synthetic mutants into a function and evaluate your test suite's defect detection capability.</p>
+          </div>
+          <button class="btn-primary-sm" onclick="runMutationAnalysis()">Run Mutation Suite</button>
+        </div>
+
+        <div class="mutation-playground">
+          <div class="info-box">
+            <h4 class="box-title">Original Function vs Injected Mutants</h4>
+            <pre class="code-display mb-3">
+// Original Source Code:
+int max(int a, int b) {
+    if (a > b)
+        return a;
+    else
+        return b;
+}
+            </pre>
+            <div id="mutant-list-container">
+              <div class="mutant-item" id="mutant-1">
+                <div>
+                  <strong>Mutant 1 (Relational Operator Replacement):</strong>
+                  <code>if (a >= b)</code> instead of <code>a > b</code>
+                  <small>This is equivalent for a max function: both versions return the same value, including when a = b.</small>
+                </div>
+                <span class="mutant-status status-pending" id="m1-status">NOT RUN</span>
+              </div>
+              <div class="mutant-item" id="mutant-2">
+                <div>
+                  <strong>Mutant 2 (Inverted Condition):</strong>
+                  <code>if (a < b)</code> instead of <code>a > b</code>
+                </div>
+                <span class="mutant-status status-pending" id="m2-status">NOT RUN</span>
+              </div>
+              <div class="mutant-item" id="mutant-3">
+                <div>
+                  <strong>Mutant 3 (Return Value Replacement):</strong>
+                  <code>return b;</code> inside true branch
+                </div>
+                <span class="mutant-status status-pending" id="m3-status">NOT RUN</span>
+              </div>
+              <div class="mutant-item" id="mutant-4">
+                <div>
+                  <strong>Mutant 4 (Constant Mutation):</strong>
+                  <code>return a + 1;</code>
+                </div>
+                <span class="mutant-status status-pending" id="m4-status">NOT RUN</span>
+              </div>
+            </div>
+            <div class="mutation-inputs mt-4">
+              <label for="mutation-test-cases"><strong>Your test inputs</strong> · one <code>a,b</code> pair per line</label>
+              <textarea id="mutation-test-cases" rows="4" spellcheck="false" aria-describedby="mutation-input-hint">5,3
+2,7</textarea>
+              <p class="small-text" id="mutation-input-hint">These starter tests exercise both branches. Edit the values to see which mutants your suite catches.</p>
+            </div>
+            <p class="mutation-feedback" id="mutation-feedback" aria-live="polite">Run the suite to compare mutant outputs with the original function.</p>
+          </div>
+
+          <div class="info-box">
+            <h4 class="box-title">Mutation Score Metric</h4>
+            <div class="stat-pill highlight-pill mb-3" style="text-align: center;">
+              <span class="stat-number" id="mutation-score-val">—</span>
+              <span class="stat-label">Mutation score = killed ÷ non-equivalent mutants × 100%</span>
+            </div>
+            <p class="small-text" id="mutation-analysis"><strong>Equivalent mutants</strong> produce the same observable result for every input and are excluded from the score. A surviving mutant can reveal a gap in the test suite.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- LAB 4: Bug Life Cycle State Machine -->
+      <div class="lab-card glass-card" id="lab-bug">
+        <div class="lab-header">
+          <div>
+            <h3>Interactive Bug Life Cycle State Machine (Notes Q.1B)</h3>
+            <p>Click on states or action triggers to step a defect through its complete lifecycle from discovery to
+              closure or reopen.</p>
+          </div>
+          <button class="btn-sm btn-secondary" onclick="resetBugStateMachine()">Reset Bug Life Cycle</button>
+        </div>
+
+        <div class="state-machine-canvas-box glass-card">
+          <div class="state-nodes-grid" id="bug-nodes-container">
+            <div class="state-node active" id="node-NEW" onclick="transitionBugState('NEW')">
+              <div class="node-icon">✨</div>
+              <div class="node-title">NEW</div>
+              <div class="node-sub">Logged by Tester</div>
+            </div>
+            <div class="state-connector">➔</div>
+            <div class="state-node" id="node-ASSIGNED" onclick="transitionBugState('ASSIGNED')">
+              <div class="node-icon">👤</div>
+              <div class="node-title">ASSIGNED</div>
+              <div class="node-sub">Lead assigns to Dev</div>
+            </div>
+            <div class="state-connector">➔</div>
+            <div class="state-node" id="node-OPEN" onclick="transitionBugState('OPEN')">
+              <div class="node-icon">🛠️</div>
+              <div class="node-title">OPEN</div>
+              <div class="node-sub">Dev investigates</div>
+            </div>
+            <div class="state-connector">➔</div>
+            <div class="state-node" id="node-FIXED" onclick="transitionBugState('FIXED')">
+              <div class="node-icon">✅</div>
+              <div class="node-title">FIXED</div>
+              <div class="node-sub">Code patched</div>
+            </div>
+            <div class="state-connector">➔</div>
+            <div class="state-node" id="node-RETEST" onclick="transitionBugState('RETEST')">
+              <div class="node-icon">🧪</div>
+              <div class="node-title">RETEST</div>
+              <div class="node-sub">Tester verifies fix</div>
+            </div>
+          </div>
+
+          <div class="outcome-branch-controls mt-6">
+            <div class="branch-card pass-branch">
+              <h5>If Retest Passes:</h5>
+              <button class="btn-success" onclick="transitionBugState('CLOSED')">Close Defect (CLOSED) ✓</button>
+            </div>
+            <div class="branch-card fail-branch">
+              <h5>If Defect Still Exists:</h5>
+              <button class="btn-danger" onclick="transitionBugState('REOPENED')">Reopen Defect (REOPENED) ↺</button>
+            </div>
+          </div>
+
+          <div class="state-inspector-box glass-card mt-6" id="bug-state-inspector">
+            <div class="inspector-badge">Current State: <strong id="current-bug-state-title">NEW</strong></div>
+            <p id="current-bug-state-desc">A defect is logged for the first time by the testing team and added to Jira /
+              Bugzilla.</p>
+            <div class="state-meta-grid">
+              <div class="meta-item"><strong>Primary Role:</strong> <span id="current-bug-role">QA Engineer /
+                  Tester</span></div>
+              <div class="meta-item"><strong>Next Allowed States:</strong> <span id="current-bug-next">ASSIGNED</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LAB 5: STLC Pipeline Animation -->
+      <div class="lab-card glass-card" id="lab-stlc">
+        <div class="lab-header">
+          <div>
+            <h3>STLC 6-Phase Interactive Pipeline Simulator</h3>
+            <p>Step through all 6 phases of the Software Testing Life Cycle and inspect Entry/Exit criteria,
+              deliverables, and activities.</p>
+          </div>
+          <button class="btn-primary-sm" onclick="runSTLCPipelineAuto()">▶ Auto-Play Pipeline</button>
+        </div>
+
+        <div class="stlc-stepper-wrapper">
+          <div class="stlc-track">
+            <div class="stlc-step-bubble active" onclick="setSTLCPhase(1)">1</div>
+            <div class="stlc-line" id="stlc-line-1"></div>
+            <div class="stlc-step-bubble" onclick="setSTLCPhase(2)">2</div>
+            <div class="stlc-line" id="stlc-line-2"></div>
+            <div class="stlc-step-bubble" onclick="setSTLCPhase(3)">3</div>
+            <div class="stlc-line" id="stlc-line-3"></div>
+            <div class="stlc-step-bubble" onclick="setSTLCPhase(4)">4</div>
+            <div class="stlc-line" id="stlc-line-4"></div>
+            <div class="stlc-step-bubble" onclick="setSTLCPhase(5)">5</div>
+            <div class="stlc-line" id="stlc-line-5"></div>
+            <div class="stlc-step-bubble" onclick="setSTLCPhase(6)">6</div>
+          </div>
+
+          <div class="stlc-phase-card glass-card mt-6" id="stlc-phase-detail"></div>
+        </div>
+      </div>
+
+      <!-- LAB 6: Accessibility & Usability Lab -->
+      <div class="lab-card glass-card" id="lab-wcag">
+        <div class="lab-header">
+          <div>
+            <h3>Usability & Accessibility (WCAG 2.2) Playground</h3>
+            <p>Test real-time color contrast ratios, simulate screen reader speech synthesis, and understand keyboard
+              accessibility requirements (Notes Q.3).</p>
+          </div>
+        </div>
+
+        <div class="grid-2col">
+          <!-- Contrast Checker -->
+          <div class="info-box">
+            <h4 class="box-title">WCAG Color Contrast Evaluator</h4>
+            <p>WCAG AA requires a minimum contrast ratio of <strong>4.5:1</strong> for normal text and
+              <strong>3.0:1</strong> for large text.</p>
+            <div class="contrast-picker-grid mt-4">
+              <div class="picker-item">
+                <label>Foreground Color:</label>
+                <input type="color" id="contrast-fg" value="#ffffff" onchange="computeContrastRatio()"
+                  class="color-picker-input">
+              </div>
+              <div class="picker-item">
+                <label>Background Color:</label>
+                <input type="color" id="contrast-bg" value="#0071e3" onchange="computeContrastRatio()"
+                  class="color-picker-input">
+              </div>
+            </div>
+
+            <!-- Preview Sample -->
+            <div class="contrast-preview-sample" id="contrast-preview-box">
+              <h3>The quick brown fox jumps over the lazy dog.</h3>
+              <p>Software Testing and Quality Assurance Accessibility Verification Sample Text.</p>
+            </div>
+
+            <div class="contrast-metric-row mt-4">
+              <div class="contrast-val-badge">Ratio: <strong id="contrast-ratio-val">8.59:1</strong></div>
+              <div class="compliance-badge pass" id="contrast-aa-badge">WCAG AA: PASS ✓</div>
+              <div class="compliance-badge pass" id="contrast-aaa-badge">WCAG AAA: PASS ✓</div>
+            </div>
+          </div>
+
+          <!-- Screen Reader Audio Simulator -->
+          <div class="info-box">
+            <h4 class="box-title">Screen Reader Voice Simulator</h4>
+            <p>Listen to how assistive technologies announce accessible UI elements with proper ARIA attributes.</p>
+            <div class="screen-reader-demo-box glass-card mt-3">
+              <button class="apple-pill-btn"
+                onclick="simulateScreenReader('Button: Submit Final Exam Paper, Enabled. Press Enter or Space to activate.')">
+                <span>🔊 Read Submit Button</span>
+              </button>
+              <button class="apple-pill-btn"
+                onclick="simulateScreenReader('Heading Level 1: Software Testing Life Cycle. Six items in list.')">
+                <span>🔊 Read Heading & List</span>
+              </button>
+              <button class="apple-pill-btn"
+                onclick="simulateScreenReader('Image: Control Flow Graph showing nodes one to six with two independent paths. Graphic description.')">
+                <span>🔊 Read Image Alt Text</span>
+              </button>
+            </div>
+            <div class="screen-reader-transcript mt-3" id="sr-transcript">
+              <em>Click any button above to synthesize text-to-speech accessibility audio.</em>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 5: FLASHCARDS (FLIPPABLE) ==================== -->
+    <section id="tab-flashcards" class="tab-content">
+      <div class="module-hero-banner glass-card amber-gradient">
+        <div class="banner-badge">Rapid Memory Recall Deck</div>
+        <h2>Apple Interactive Flashcards (Click to Flip)</h2>
+        <p>12 high-priority concept flashcards designed for 30-second rapid recall right before walking into your STQA
+          exam hall.</p>
+      </div>
+
+      <div class="flashcards-container" id="flashcards-grid">
+        <!-- Dynamically rendered by app.js -->
+      </div>
+    </section>
+
+    <!-- ==================== TAB 6: SOLVED PYQS & HANDWRITTEN NOTES ==================== -->
+    <section id="tab-pyqs" class="tab-content">
+      <div class="module-hero-banner glass-card emerald-gradient">
+        <div class="banner-badge">Official Solved PYQ Repository</div>
+        <h2>University Previous Year Questions & Model Answers</h2>
+        <p>Direct digital reproductions of the handwritten university questions you uploaded. Formatted in standard
+          10-mark answer structures that make key marking points easy to show.</p>
+      </div>
+
+      <!-- PYQ Filter Buttons -->
+      <div class="pyq-filter-bar">
+        <button class="filter-pill active" onclick="filterPYQs('all')">All Questions</button>
+        <button class="filter-pill" onclick="filterPYQs('unit1')">Unit 1 (Methodology)</button>
+        <button class="filter-pill" onclick="filterPYQs('unit2')">Unit 2 (Techniques)</button>
+        <button class="filter-pill" onclick="filterPYQs('numericals')">Numericals & Test Tables</button>
+      </div>
+
+      <div class="pyq-cards-accordion" id="pyq-accordion-container"></div>
+    </section>
+
+    <!-- ==================== TAB 7: EXAM SIMULATOR & HALL STRATEGY ==================== -->
+    <section id="tab-quiz" class="tab-content">
+      <div class="module-hero-banner glass-card amber-gradient">
+        <div class="banner-badge">Self-Assessment Engine</div>
+        <h2>Interactive STQA Exam Readiness Simulator</h2>
+        <p>Test your conceptual clarity across both units with 15 high-yield university questions, instant detailed
+          explanations, and scoring.</p>
+      </div>
+
+      <div class="quiz-container glass-card mb-8" id="quiz-wrapper">
+        <div class="quiz-header">
+          <div class="quiz-progress-info">
+            <span id="quiz-question-counter">Question 1 of 15</span>
+            <div class="quiz-progress-bar">
+              <div class="quiz-progress-fill" id="quiz-progress-fill" style="width: 6.6%;"></div>
+            </div>
+          </div>
+          <div class="quiz-score-badge">Score: <span id="live-score">0</span></div>
+        </div>
+
+        <div class="quiz-question-box" id="quiz-question-card"></div>
+
+        <div class="quiz-nav-footer">
+          <button class="btn-secondary" id="quiz-prev-btn" onclick="prevQuizQuestion()" disabled>← Previous</button>
+          <button class="btn-primary" id="quiz-next-btn" onclick="nextQuizQuestion()">Next Question →</button>
+        </div>
+      </div>
+
+      <!-- Exam Hall Presentation Strategy -->
+      <div class="glass-card mt-8">
+        <div class="section-header">
+          <h2 class="section-title">🎓 Exam Hall Strategy: How to Score Maximum Marks Tomorrow</h2>
+          <p class="section-subtitle">Follow this 6-point presentation template used by university rankers</p>
+        </div>
+
+        <div class="strategy-cards-grid">
+          <div class="strat-card">
+            <div class="strat-number">01</div>
+            <h4>Structure for 10-Mark Questions</h4>
+            <p class="small-text">Always write: 1. Definition (bold), 2. Neat labeled pencil diagram, 3. Numbered
+              explanation points, 4. Concrete code/table example, 5. Advantages & Limitations, 6. Conclusion.</p>
+          </div>
+          <div class="strat-card">
+            <div class="strat-number">02</div>
+            <h4>Always Show All 3 Formulas for V(G)</h4>
+            <p class="small-text">In Basis Path questions, compute $V(G)$ via all three: $P+1$, $E-N+2$, and $R$.
+              University evaluators give full marks when all three arrive at the identical number!</p>
+          </div>
+          <div class="strat-card">
+            <div class="strat-number">03</div>
+            <h4>Draw Labeled Number Lines for BVA</h4>
+            <p class="small-text">For questions like $[18, 60]$ or $[1, 50]$, always draw the horizontal number line
+              with brackets, valid green zone, and points for $min-1, min, nom, max, max+1$.</p>
+          </div>
+          <div class="strat-card">
+            <div class="strat-number">04</div>
+            <h4>Differentiate in Tabular Columns</h4>
+            <p class="small-text">Never write differences in paragraphs. Always draw a 3-column table: [Dimension /
+              Aspect | Concept A | Concept B]. Aim for 5-6 points for 5 marks, 8-10 points for 10 marks.</p>
+          </div>
+          <div class="strat-card">
+            <div class="strat-number">05</div>
+            <h4>Memorize Key Acronyms</h4>
+            <p class="small-text">RTM (Requirement Traceability Matrix), SRS, BRD, WCAG (Web Content Accessibility
+              Guidelines - POUR), IEEE 829, DRE (Defect Removal Efficiency).</p>
+          </div>
+          <div class="strat-card">
+            <div class="strat-number">06</div>
+            <h4>Mention Stubs & Drivers in Integration</h4>
+            <p class="small-text">Highlight that Top-Down integration uses Stubs (dummy called routine) and Bottom-Up
+              integration uses Drivers (dummy calling harness).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Minimalist Apple Footer -->
+  <footer class="apple-footer">
+    <div class="footer-content">
+      <div class="footer-left">
+      <p>STQA · A practical guide to software testing</p>
+      </div>
+      <div class="footer-right">
+        <span>Your study progress stays on this device.</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="command-overlay" id="command-overlay" aria-hidden="true">
+    <div class="command-backdrop" onclick="closeCommandPalette()"></div>
+    <div class="command-box" role="dialog" aria-modal="true" aria-label="Quick navigation">
+      <div class="command-search"><span>⌕</span><input id="command-input" type="search" placeholder="Go to a lesson, lab, or practice…" autocomplete="off"><kbd>ESC</kbd></div>
+      <div class="command-caption">QUICK NAVIGATION</div>
+      <div class="command-results" id="command-results"></div>
+      <div class="command-hint"><span><kbd>↑</kbd><kbd>↓</kbd> navigate</span><span><kbd>↵</kbd> open</span><span><kbd>⌘ K</kbd> close</span></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
